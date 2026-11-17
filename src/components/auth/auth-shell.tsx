@@ -1,13 +1,14 @@
+import { Image } from 'expo-image';
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 
 import { GymBackdrop, GymHero } from '@/components/ui/exercise-image';
-import { Dumbbell } from '@/components/ui/icons';
 import { Screen } from '@/components/ui/screen';
 import { ScreenHeader } from '@/components/ui/screen-header';
 import { Text } from '@/components/ui/text';
 import { ThemeScope } from '@/components/ui/theme-scope';
-import { useColors } from '@/constants/theme';
+
+const LOGO = require('@/assets/images/logo.png');
 
 export function AuthShell({
   title,
@@ -23,7 +24,6 @@ export function AuthShell({
   /** Key in `GYM_IMAGES` to use as a full-screen photo background. */
   background?: string;
 }) {
-  const colors = useColors();
   const screen = (
     <Screen
       keyboard
@@ -34,9 +34,7 @@ export function AuthShell({
         {!back ? (
           <GymHero height={200} image="hero" style={{ marginBottom: 28 }}>
             <View className="flex-row items-center gap-2">
-              <View className="h-9 w-9 items-center justify-center rounded-md bg-accent">
-                <Dumbbell size={18} color={colors.accentInk} strokeWidth={2.4} />
-              </View>
+              <Image source={LOGO} style={{ width: 40, height: 40 }} contentFit="contain" accessibilityLabel="Liftio logo" />
               <Text variant="heading" weight="extrabold">
                 Liftio
               </Text>
