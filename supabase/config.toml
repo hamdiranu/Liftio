@@ -1,5 +1,5 @@
-# Minimal Supabase CLI config for Fitio. `supabase start` fills in defaults for everything else.
-project_id = "fitio"
+# Minimal Supabase CLI config for Liftio. `supabase start` fills in defaults for everything else.
+project_id = "liftio"
 
 [db.seed]
 enabled = true

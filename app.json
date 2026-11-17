@@ -1,20 +1,20 @@
 {
   "expo": {
-    "name": "Fitio",
-    "slug": "fitio",
+    "name": "Liftio",
+    "slug": "liftio",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "fitio",
+    "scheme": "liftio",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#101010",
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
-      "bundleIdentifier": "com.fitio.app"
+      "bundleIdentifier": "com.liftio.app"
     },
     "android": {
-      "package": "com.fitio.app",
+      "package": "com.liftio.app",
       "adaptiveIcon": {
         "backgroundColor": "#101010",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

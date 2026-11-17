@@ -1,4 +1,4 @@
-# Fitio (Liftio)
+# Liftio
 
 A workout tracker for iOS and Android with an AI personal trainer. It logs sets fast mid-workout, works fully offline, syncs to Supabase when you sign in, and turns your history into analytics and coaching.
 

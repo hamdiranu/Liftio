@@ -31,7 +31,7 @@ import type { ThemeMode } from '@/types';
 const THEME_HINT: Record<ThemeMode, string> = {
   system: "Matches your phone's light or dark setting.",
   light: 'Bright surfaces for training in well-lit gyms. Photos stay dark.',
-  dark: 'The Fitio default: warm dark surfaces with orange accents.',
+  dark: 'The Liftio default: warm dark surfaces with orange accents.',
   oled: 'Pure black backgrounds save battery on OLED screens.',
 };
 
@@ -67,7 +67,7 @@ export default function SettingsScreen() {
     try {
       const [workouts, templates, records] = await Promise.all([listWorkouts(userId), listTemplates(userId), listPersonalRecords(userId)]);
       const json = JSON.stringify({ exportedAt: new Date().toISOString(), profile: profile.data, settings: { unit: settings.unit }, workouts, templates, records }, null, 2);
-      await Share.share({ title: 'Fitio export', message: json });
+      await Share.share({ title: 'Liftio export', message: json });
     } catch (e) {
       toast(toErrorMessage(e), 'error');
     }
@@ -182,7 +182,7 @@ export default function SettingsScreen() {
           <SettingToggle
             icon={Database}
             label="Share anonymous usage stats"
-            description="Helps improve Fitio. Never includes workout content."
+            description="Helps improve Liftio. Never includes workout content."
             value={settings.privacy.shareAnalytics}
             onValueChange={(v) => settings.setPrivacy({ shareAnalytics: v })}
           />
@@ -245,7 +245,7 @@ export default function SettingsScreen() {
         </SettingGroup>
 
         <Text variant="caption" tone="muted" align="center">
-          Fitio {Constants.expoConfig?.version ?? '1.0.0'} · {Platform.OS} · {isSupabaseConfigured ? 'Cloud sync available' : 'Offline build'}
+          Liftio {Constants.expoConfig?.version ?? '1.0.0'} · {Platform.OS} · {isSupabaseConfigured ? 'Cloud sync available' : 'Offline build'}
         </Text>
         <View className="mt-4">
           <Button label="Done" variant="secondary" fullWidth onPress={() => goBack('/profile')} />

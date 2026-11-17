@@ -38,7 +38,7 @@ export function AuthShell({
                 <Dumbbell size={18} color={colors.accentInk} strokeWidth={2.4} />
               </View>
               <Text variant="heading" weight="extrabold">
-                Fitio
+                Liftio
               </Text>
             </View>
             <Text variant="small" tone="secondary" style={{ marginTop: 6 }}>

@@ -1,4 +1,4 @@
-// Supabase Edge Function (Deno): the Fitio AI coach.
+// Supabase Edge Function (Deno): the Liftio AI coach.
 // The model API key lives only here (ANTHROPIC_API_KEY secret) — the app never sees it.
 //
 //   supabase secrets set ANTHROPIC_API_KEY=...
@@ -21,7 +21,7 @@ const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { ...cors, 'Content-Type': 'application/json' } });
 
 // Stable system prompt (cached): role, rules and the exercise catalog the coach may reference.
-const SYSTEM = `You are the AI personal trainer inside Fitio, a strength-training app.
+const SYSTEM = `You are the AI personal trainer inside Liftio, a strength-training app.
 
 How you coach:
 - Ground every answer in the user's training context (sessions, volume, recovery by muscle group, last performance, records, goals). Quote their actual numbers when useful.

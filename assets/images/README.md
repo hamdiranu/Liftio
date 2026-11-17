@@ -1,4 +1,4 @@
-# Fitio photography
+# Liftio photography
 
 The app shows real photography for every exercise and hero section that has a file here, and
 designed fallback art (dark gradient, orange ambient light, muscle-group mark) for the rest.
