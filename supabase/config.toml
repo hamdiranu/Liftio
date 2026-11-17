@@ -1,0 +1,12 @@
+# Minimal Supabase CLI config for Fitio. `supabase start` fills in defaults for everything else.
+project_id = "fitio"
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[functions.ai-coach]
+verify_jwt = true
+
+[functions.delete-account]
+verify_jwt = true
