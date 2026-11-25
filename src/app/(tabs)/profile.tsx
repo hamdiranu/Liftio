@@ -84,7 +84,7 @@ export default function ProfileScreen() {
                     {p.name}
                   </Text>
                   <Text variant="caption" tone="secondary" numberOfLines={1}>
-                    {status === 'signedIn' ? email : 'Guest · data stays on this device'}
+                    {status === 'signedIn' ? email : isSupabaseConfigured ? 'Guest · data stays on this device' : 'Data stays on this phone'}
                   </Text>
                   <View className="mt-2 flex-row gap-2">
                     <Badge label={EXPERIENCE_LABELS[p.experience]} />
@@ -185,31 +185,34 @@ export default function ProfileScreen() {
               <SettingLink icon={Scale} label="Training defaults" onPress={() => router.push('/profile/settings')} />
               <SettingLink icon={History} label="Workout history" onPress={() => router.push('/workout/history')} />
               <SettingLink icon={Trophy} label="Progress and records" onPress={() => router.push('/progress')} />
-              <SettingLink icon={Settings} label="Account" value={status === 'signedIn' ? 'Signed in' : 'Guest'} onPress={() => router.push('/profile/settings')} last />
+              <SettingLink icon={Settings} label="Account" value={status === 'signedIn' ? 'Signed in' : isSupabaseConfigured ? 'Guest' : 'This phone'} onPress={() => router.push('/profile/settings')} last />
             </SettingGroup>
 
             {status === 'guest' && isSupabaseConfigured ? (
               <Button label="Create an account to back up" icon={Cloud} fullWidth onPress={() => signOut().then(() => router.replace('/auth/sign-up'))} />
             ) : null}
-            <View className="mt-3">
-              <Button
-                label={status === 'signedIn' ? 'Sign out' : 'Leave guest mode'}
-                icon={LogOut}
-                variant="danger"
-                fullWidth
-                onPress={async () => {
-                  const ok = await confirm({
-                    title: status === 'signedIn' ? 'Sign out?' : 'Leave guest mode?',
-                    message:
-                      status === 'signedIn'
-                        ? 'Your synced data stays in your account. Unsynced changes stay on this device until you sign back in.'
-                        : 'Your workouts stay on this device and come back when you continue as a guest again.',
-                    confirmLabel: status === 'signedIn' ? 'Sign out' : 'Leave',
-                  });
-                  if (ok) await signOut();
-                }}
-              />
-            </View>
+            {/* Offline builds have no accounts, so leaving guest mode would only show the welcome screen again. */}
+            {status === 'signedIn' || isSupabaseConfigured ? (
+              <View className="mt-3">
+                <Button
+                  label={status === 'signedIn' ? 'Sign out' : 'Leave guest mode'}
+                  icon={LogOut}
+                  variant="danger"
+                  fullWidth
+                  onPress={async () => {
+                    const ok = await confirm({
+                      title: status === 'signedIn' ? 'Sign out?' : 'Leave guest mode?',
+                      message:
+                        status === 'signedIn'
+                          ? 'Your synced data stays in your account. Unsynced changes stay on this device until you sign back in.'
+                          : 'Your workouts stay on this device and come back when you continue as a guest again.',
+                      confirmLabel: status === 'signedIn' ? 'Sign out' : 'Leave',
+                    });
+                    if (ok) await signOut();
+                  }}
+                />
+              </View>
+            ) : null}
           </View>
         </View>
       )}

@@ -7,7 +7,7 @@ import { View } from 'react-native';
 import { AuthShell } from '@/components/auth/auth-shell';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, CloudOff, Lock, Mail } from '@/components/ui/icons';
+import { ArrowRight, Lock, Mail, Smartphone } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Divider } from '@/components/ui/misc';
 import { Text } from '@/components/ui/text';
@@ -38,7 +38,14 @@ export default function SignInScreen() {
   });
 
   return (
-    <AuthShell background="auth" title="Welcome back" subtitle="Sign in to sync your training across devices.">
+    <AuthShell
+      background="auth"
+      title={isSupabaseConfigured ? 'Welcome back' : 'Welcome to Liftio'}
+      subtitle={
+        isSupabaseConfigured
+          ? 'Sign in to sync your training across devices.'
+          : 'Log every set and watch your progress add up.'
+      }>
       {isSupabaseConfigured ? (
         <View className="gap-4">
           <Controller
@@ -110,12 +117,11 @@ export default function SignInScreen() {
       ) : (
         <Card className="mb-5">
           <View className="flex-row gap-3">
-            <CloudOff size={20} color={colors.accent} />
+            <Smartphone size={20} color={colors.accent} />
             <View className="flex-1">
-              <Text variant="subheading">Offline mode</Text>
+              <Text variant="subheading">No account needed</Text>
               <Text variant="small" tone="secondary" style={{ marginTop: 4 }}>
-                Cloud accounts aren’t configured for this build. Everything works on this device, and your data moves to an
-                account when you connect Supabase later.
+                Your workouts are saved privately on this phone. Everything works offline.
               </Text>
             </View>
           </View>
@@ -134,9 +140,11 @@ export default function SignInScreen() {
           router.replace('/');
         }}
       />
-      <Text variant="caption" tone="muted" align="center" style={{ marginTop: 14 }}>
-        Without an account, workouts stay on this device. Sign in later to back them up.
-      </Text>
+      {isSupabaseConfigured ? (
+        <Text variant="caption" tone="muted" align="center" style={{ marginTop: 14 }}>
+          Without an account, workouts stay on this device. Sign in later to back them up.
+        </Text>
+      ) : null}
     </AuthShell>
   );
 }

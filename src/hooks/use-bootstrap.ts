@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import { GUEST_USER_ID, useAuth } from '@/features/auth/store';
-import { ensureTemplates, seedSampleData } from '@/features/workouts/sample-data';
+import { useAuth } from '@/features/auth/store';
+import { ensureTemplates } from '@/features/workouts/sample-data';
 import { ensureCrossOriginIsolation } from '@/lib/cross-origin-isolation';
-import { queryClient } from '@/lib/query';
 import { getDb } from '@/services/db';
 import { startSyncTriggers } from '@/services/sync';
 import { useActiveWorkout } from '@/store/active-workout';
 import { useSettings } from '@/store/settings';
 
 /**
- * Opens the database, restores auth and persisted stores, seeds demo data for guests and
+ * Opens the database, restores auth and persisted stores, creates the built-in templates and
  * starts background sync. Returns true once the app can render real content.
+ * Demo history is opt-in (Settings → Load sample data), so new users start with an empty log.
  */
 export function useBootstrap() {
   const [ready, setReady] = useState(false);
@@ -51,10 +51,6 @@ export function useBootstrap() {
     let stop: (() => void) | undefined;
     (async () => {
       try {
-        if (userId === GUEST_USER_ID) {
-          const seeded = await seedSampleData(userId);
-          if (seeded) await queryClient.invalidateQueries();
-        }
         await ensureTemplates(userId);
       } catch (error) {
         console.warn('[bootstrap] seeding failed', error);

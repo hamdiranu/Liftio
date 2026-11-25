@@ -206,7 +206,7 @@ export default function SettingsScreen() {
             <SettingLink
               icon={Trash2}
               label="Clear sample data"
-              description="Remove the demo history that came with guest mode"
+              description="Remove the generated demo workouts"
               onPress={async () => {
                 if (!(await confirm({ title: 'Clear sample data?', message: 'Only the generated demo workouts are removed.', confirmLabel: 'Clear', destructive: true }))) return;
                 await clearSampleData(userId);
@@ -239,13 +239,14 @@ export default function SettingsScreen() {
           ) : isSupabaseConfigured ? (
             <SettingLink icon={Cloud} label="Create account or sign in" description="Back up and sync across devices" onPress={() => signOut().then(() => router.replace('/auth/sign-in'))} />
           ) : (
-            <SettingLink icon={UserRound} label="Guest mode" description="Cloud accounts aren’t configured for this build" onPress={() => undefined} />
+            <SettingLink icon={UserRound} label="Stored on this phone" description="No account needed. Use Export my data to keep a copy." onPress={() => undefined} />
           )}
           <SettingLink icon={Trash2} tone="danger" label={status === 'signedIn' ? 'Delete account' : 'Delete all data on this device'} onPress={() => void deleteAccount()} last />
         </SettingGroup>
 
         <Text variant="caption" tone="muted" align="center">
-          Liftio {Constants.expoConfig?.version ?? '1.0.0'} · {Platform.OS} · {isSupabaseConfigured ? 'Cloud sync available' : 'Offline build'}
+          Liftio {Constants.expoConfig?.version ?? '1.0.0'} · {Platform.OS}
+          {isSupabaseConfigured ? ' · Cloud sync available' : ''}
         </Text>
         <View className="mt-4">
           <Button label="Done" variant="secondary" fullWidth onPress={() => goBack('/profile')} />
