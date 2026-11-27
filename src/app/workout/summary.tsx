@@ -64,12 +64,12 @@ export default function WorkoutSummaryScreen() {
         </View>
       ) : (
         <View className="gap-6 pt-6">
-          <Animated.View entering={ZoomIn.springify().damping(12)} className="items-center">
+          <Animated.View entering={ZoomIn.springify().damping(12)} style={{ alignItems: 'center' }}>
             <View className="h-20 w-20 items-center justify-center rounded-full border border-accent/40 bg-accent/15">
               <PartyPopper size={36} color={colors.accent} />
             </View>
           </Animated.View>
-          <Animated.View entering={FadeInDown.delay(120)} className="items-center">
+          <Animated.View entering={FadeInDown.delay(120)} style={{ alignItems: 'center' }}>
             <Overline>Workout complete</Overline>
             <Text variant="title" align="center" style={{ marginTop: 6 }}>
               {workout.data.name}
@@ -79,7 +79,7 @@ export default function WorkoutSummaryScreen() {
             </Text>
           </Animated.View>
 
-          <Animated.View entering={FadeInDown.delay(200)} className="gap-3">
+          <Animated.View entering={FadeInDown.delay(200)} style={{ gap: 12 }}>
             <View className="flex-row gap-3">
               <StatTile label="Duration" value={formatMinutes(stats.durationSeconds)} icon={Clock} />
               <StatTile label="Volume" value={formatCompact(Math.round(kgToUnit(stats.totalVolumeKg, unit)))} unit={unit} icon={Weight} />

@@ -1,5 +1,4 @@
 import '../global.css';
-import '@/lib/nativewind-interop';
 
 import {
   Inter_400Regular,
