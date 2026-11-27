@@ -5,8 +5,9 @@ designed fallback art (dark gradient, orange ambient light, muscle-group mark) f
 
 All 35 exercises plus `gym/hero` and `gym/coach` have photos. 11 came from the RepTrack Figma
 file (originals in `design/figma-images/`), and the other 26 were supplied separately as 2048 px
-JPEGs and downscaled. Keep app copies as JPEG around 1080 px wide (about 60–170 KB each); full-size
-originals would add 1.5–3 MB per photo to the app.
+JPEGs and downscaled. App copies are WebP (quality 80) around 1080 px wide, about 40–140 KB each;
+WebP is about a third smaller than JPEG at the same quality. Full-size originals would add 1.5–3 MB
+per photo to the app.
 
 A few photos show a variation of the exercise rather than the exact setup in the catalog:
 decline press with dumbbells (catalog: barbell), skull crusher with a straight bar (EZ bar),
@@ -27,10 +28,10 @@ Alternatively, upload `<slug>.jpg` files to the public Supabase Storage bucket n
 
 | File | Used on |
 | --- | --- |
-| `hero.jpg` | Home dashboard hero |
-| `auth.jpg` | Full-screen background of the sign-in ("Welcome back") screen |
-| `coach.jpg` | AI Coach header |
-| `train.jpg` | Train tab header |
+| `hero.webp` | Home dashboard hero |
+| `auth.webp` | Full-screen background of the sign-in screen |
+| `coach.webp` | AI Coach header |
+| `train.webp` | Train tab header (no photo yet) |
 
 ### `exercises/`
 
