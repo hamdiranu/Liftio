@@ -248,6 +248,9 @@ export default function SettingsScreen() {
           Liftio {Constants.expoConfig?.version ?? '1.0.0'} · {Platform.OS}
           {isSupabaseConfigured ? ' · Cloud sync available' : ''}
         </Text>
+        <Text variant="caption" tone="muted" align="center" style={{ marginTop: 4 }}>
+          Created by Hamdi Ranuharja
+        </Text>
         <View className="mt-4">
           <Button label="Done" variant="secondary" fullWidth onPress={() => goBack('/profile')} />
         </View>
