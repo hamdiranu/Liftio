@@ -10,8 +10,8 @@ module.exports = defineConfig([
     ignores: ['dist/*', 'public/*', '.expo/**', 'supabase/functions/**'],
   },
   {
-    // Build-time Node scripts.
-    files: ['scripts/**/*.{js,mjs,mts}', '*.config.js'],
+    // Build-time Node scripts and Expo config plugins.
+    files: ['scripts/**/*.{js,mjs,mts}', 'plugins/**/*.js', '*.config.js'],
     languageOptions: { globals: globals.node },
   },
   {
