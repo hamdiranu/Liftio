@@ -25,13 +25,14 @@ export function Skeleton({
     opacity.value = withRepeat(withTiming(0.9, { duration: 850 }), -1, true);
   }, [opacity]);
   const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
-  return (
+  const bone = (
     <Animated.View
-      className={className}
       accessibilityLabel="Loading"
       style={[{ width, height, borderRadius: radius, backgroundColor: colors.elevated }, style]}
     />
   );
+  // Reanimated views take `style` only; NativeWind classes (e.g. margins) go on a plain wrapper.
+  return className ? <View className={className}>{bone}</View> : bone;
 }
 
 export function SkeletonCard({ lines = 3, className }: { lines?: number; className?: string }) {

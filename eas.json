@@ -14,6 +14,9 @@
     "production": {
       "environment": "production",
       "autoIncrement": true,
+      "env": {
+        "GRADLE_OPTS": "-Dorg.gradle.jvmargs=\"-Xmx4g -XX:MaxMetaspaceSize=1g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8\" -Dorg.gradle.parallel=true -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+      },
       "android": {
         "buildType": "app-bundle"
       }

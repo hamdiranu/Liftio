@@ -79,8 +79,10 @@ export const SetRow = memo(function SetRow({
         </Pressable>
       ) : null}
       <Pressable onPress={onToggle} hitSlop={10} accessibilityRole="checkbox" accessibilityState={{ checked: set.completed }} accessibilityLabel={`Mark set ${set.index + 1} complete`}>
-        <Animated.View style={checkStyle} className={cn('h-9 w-9 items-center justify-center rounded-full border', set.completed ? 'border-success bg-success' : 'border-line-strong')}>
-          <Check size={18} color={set.completed ? '#0B2A1C' : colors.textMuted} strokeWidth={3} />
+        <Animated.View style={checkStyle}>
+          <View className={cn('h-9 w-9 items-center justify-center rounded-full border', set.completed ? 'border-success bg-success' : 'border-line-strong')}>
+            <Check size={18} color={set.completed ? '#0B2A1C' : colors.textMuted} strokeWidth={3} />
+          </View>
         </Animated.View>
       </Pressable>
     </View>

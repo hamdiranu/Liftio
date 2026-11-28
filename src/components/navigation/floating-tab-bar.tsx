@@ -13,7 +13,6 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Dumbbell, House, Play, Sparkles, TrendingUp, UserRound, type IconComponent } from '@/components/ui/icons';
-import { tapHaptic } from '@/components/ui/pressable-scale';
 import { Text } from '@/components/ui/text';
 import { useColors, useResolvedTheme } from '@/constants/theme';
 import { formatDuration } from '@/lib/format';
@@ -148,7 +147,6 @@ export function FloatingTabBar({ state, descriptors, emitter, navigateToTab }: B
                 onPress={() => {
                   const event = emitter.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
                   if (!focused && !event.defaultPrevented) {
-                    tapHaptic('selection');
                     navigateToTab(route.key);
                   }
                 }}

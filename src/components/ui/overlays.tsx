@@ -72,24 +72,26 @@ export function DialogHost() {
     <Modal visible={Boolean(request)} transparent animationType="fade" onRequestClose={() => close(false)} statusBarTranslucent>
       <View className="flex-1 items-center justify-center px-8" style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
         {request ? (
-          <Animated.View entering={FadeInDown.duration(220)} className="w-full max-w-sm rounded-xl border border-line-strong bg-surface p-6">
-            <Text variant="heading">{request.title}</Text>
-            {request.message ? (
-              <Text variant="body" tone="secondary" style={{ marginTop: 8 }}>
-                {request.message}
-              </Text>
-            ) : null}
-            <View className="mt-6 flex-row gap-3">
-              <View className="flex-1">
-                <Button label={request.cancelLabel ?? 'Cancel'} variant="secondary" fullWidth onPress={() => close(false)} />
-              </View>
-              <View className="flex-1">
-                <Button
-                  label={request.confirmLabel ?? 'Confirm'}
-                  variant={request.destructive ? 'danger' : 'primary'}
-                  fullWidth
-                  onPress={() => close(true)}
-                />
+          <Animated.View entering={FadeInDown.duration(220)} style={{ width: '100%', maxWidth: 384 }}>
+            <View className="rounded-xl border border-line-strong bg-surface p-6">
+              <Text variant="heading">{request.title}</Text>
+              {request.message ? (
+                <Text variant="body" tone="secondary" style={{ marginTop: 8 }}>
+                  {request.message}
+                </Text>
+              ) : null}
+              <View className="mt-6 flex-row gap-3">
+                <View className="flex-1">
+                  <Button label={request.cancelLabel ?? 'Cancel'} variant="secondary" fullWidth onPress={() => close(false)} />
+                </View>
+                <View className="flex-1">
+                  <Button
+                    label={request.confirmLabel ?? 'Confirm'}
+                    variant={request.destructive ? 'danger' : 'primary'}
+                    fullWidth
+                    onPress={() => close(true)}
+                  />
+                </View>
               </View>
             </View>
           </Animated.View>
@@ -131,12 +133,13 @@ export function ToastHost() {
         key={item.id}
         entering={FadeInDown.springify().damping(16)}
         exiting={FadeOutDown.duration(180)}
-        accessibilityLiveRegion="polite"
-        className="flex-row items-center gap-3 rounded-lg border border-line-strong bg-elevated px-4 py-3">
-        <Icon size={18} color={color} />
-        <Text variant="small" weight="medium" style={{ flex: 1 }}>
-          {item.message}
-        </Text>
+        accessibilityLiveRegion="polite">
+        <View className="flex-row items-center gap-3 rounded-lg border border-line-strong bg-elevated px-4 py-3">
+          <Icon size={18} color={color} />
+          <Text variant="small" weight="medium" style={{ flex: 1 }}>
+            {item.message}
+          </Text>
+        </View>
       </Animated.View>
     </View>
   );
